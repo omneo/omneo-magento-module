@@ -39,32 +39,34 @@ class Data implements ObserverInterface
             return $this;
         }
 
-        // print_r($order->toArray());
-
-        // var_dump($order->getData());
-
-        $formattedOrder = json_decode($order->toJson());
-        $items = $order->getItems();
-        $formattedItems = [];
-
-        foreach ($items as $i=>$item) {
-            print_r(get_class_methods($item));
-        }
-        // print_r($formattedOrder);
-        // var_dump($order->getItems());
-        // print_r(get_class_methods($order->getItems()));
-        die();
-
-        
-        // $this->logger->debug(implode($order->toArray(), ', '));
-        // $this->logger->debug($order->getData());
-
-        die();
-
         try{
-            $data = array();                                                                    
+            $payload = json_decode($order->toJson(), true);
+
+            $payload['items'] = [];
+            foreach ($order->getItems() as $i=>$item) {
+                $payload['items'][] = json_decode($item->toJson(), true);
+            }
+
+            $payment = json_decode($order->getPayment()->toJson(), true);
+            $payload['payment'] = $payment;
+
+            $payload['addresses'] = [];
+            foreach ($order->getAddresses() as $i=>$item) {
+                $payload['addresses'][] = json_decode($item->toJson(), true);
+            }
+
+            $payload['extension_attributes'] = [];
+            foreach ($order->getExtensionAttributes() as $i=>$item) {
+                $payload['extension_attributes'][] = json_decode($item->toJson(), true);
+            }
+
+            $payload['status_histories'] = [];
+            foreach ($order->getStatusHistories() as $i=>$item) {
+                $payload['status_histories'][] = json_decode($item->toJson(), true);
+            }          
+
             $request = new Request($this->logger);
-            $response = $request->post('order.updated', $order->__toArray());
+            $response = $request->post('order.updated', $payload);
         }catch(\Exception $e){
             $this->logger->debug($e);
         }

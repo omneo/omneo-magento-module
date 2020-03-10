@@ -38,8 +38,7 @@ class Data implements ObserverInterface
             return $this;
         }
 
-        try{
-            $data = array();                                                                    
+        try{                                                                 
             $request = new Request($this->logger);
             $response = $request->post('product.updated', $product->__toArray());
         }catch(\Exception $e){

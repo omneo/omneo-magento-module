@@ -42,8 +42,7 @@ class Data implements ObserverInterface
             return $this;
         }
 
-        try{
-            $data = array();                                                                    
+        try{                                                                 
             $request = new Request($this->logger);
             $response = $request->post('profile.updated', $customer->__toArray());
         }catch(\Exception $e){
