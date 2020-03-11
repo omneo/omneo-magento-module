@@ -9,7 +9,7 @@ Clone or download this Repo and upload to the following path, relative to your M
 Within the Magento 2 admin navigate to `System > Other Settings > Custom Variables` and register the following custom fields:
 
 | Variable Code  | Variable Name |
-| —————— | —————— |
+| ------------- | ------------- |
 | omneo_tenant | Omneo Tenant  |
 | omneo_webhook_url | Omneo Webhook URL |
 | omneo_webhook_secret | Omneo Webhook Secret |
