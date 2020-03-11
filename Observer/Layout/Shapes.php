@@ -21,6 +21,7 @@ class Shapes implements ObserverInterface
     public function execute(Observer $observer)
     {
         $session = $this->customerSession;
+
         if (!$session->isLoggedIn()) {
             return $this;
         }
@@ -29,7 +30,7 @@ class Shapes implements ObserverInterface
         $token = $session->getIdToken();
         $expiry = $session->getIdExpiry();
 
-        $this->logger->debug("ID DATA ".$token.' - '.$expiry.' - '.time());
+        // $this->logger->debug("ID DATA ".$token.' - '.$expiry.' - '.time());
 
         // Bail if token request errored and within retry period
         if($token == 'error' && $expiry < time()){
@@ -69,6 +70,7 @@ class Shapes implements ObserverInterface
             }
         }
         
+
         $layout = $observer->getLayout();
         $layout->getUpdate()->addHandle('shapes'); 
 

@@ -2,5 +2,5 @@
 try{
     $viewModel = $block->getViewModel();
     $idPayload = $viewModel->getIdData();
-    echo '<script>window.omneoID = '.json_encode($idPayload).'</script>';
+    echo '<script>window.omneoId = '.json_encode($idPayload).'</script>';
 }catch(\Exception $e){}
