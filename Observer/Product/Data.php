@@ -13,7 +13,7 @@ class Data implements ObserverInterface
     protected $om;
 
     public function __construct(
-        \Psr\Log\LoggerInterface $logger,
+        \Psr\Log\LoggerInterface $logger
     )
     {
         $this->logger = $logger;
