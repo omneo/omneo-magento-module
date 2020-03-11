@@ -5,7 +5,7 @@ namespace Omneo\Relay\Observer\Customer;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 
-use Omneo\Relay\Utils\Request;
+use Omneo\Relay\Utils\Webhook;
 class Address implements ObserverInterface
 {
 
@@ -40,7 +40,7 @@ class Address implements ObserverInterface
         }
 
         try{                                                                  
-            $request = new Request($this->logger);
+            $request = new Webhook($this->logger);
             $response = $request->post('profile.updated', $customer->__toArray());
         }catch(\Exception $e){
             $this->logger->debug($e);

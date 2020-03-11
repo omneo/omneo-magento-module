@@ -1,7 +1,11 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceContainer name="before.body.end">
-            <block class="Magento\Framework\View\Element\Template" name="shapes" template="Omneo_Relay::shapes.phtml"/>
-        </referenceContainer>
+        <referenceBlock name="head.additional">
+            <block class="Magento\Framework\View\Element\Template" name="shapes" template="Omneo_Relay::shapes.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Omneo\Relay\View\Model\Shapes</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
     </body>
 </page>

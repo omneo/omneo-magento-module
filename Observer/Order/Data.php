@@ -5,7 +5,7 @@ namespace Omneo\Relay\Observer\Order;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 
-use Omneo\Relay\Utils\Request;
+use Omneo\Relay\Utils\Webhook;
 class Data implements ObserverInterface
 {
 
@@ -65,7 +65,7 @@ class Data implements ObserverInterface
                 $payload['status_histories'][] = json_decode($item->toJson(), true);
             }          
 
-            $request = new Request($this->logger);
+            $request = new Webhook($this->logger);
             $response = $request->post('order.updated', $payload);
         }catch(\Exception $e){
             $this->logger->debug($e);
