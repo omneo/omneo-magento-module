@@ -32,16 +32,10 @@ class Address implements ObserverInterface
     {
 
         $address = $observer->getCustomerAddress();
-        $customerId = $address->getCustomerId();
-        $customer = $this->customerModel->getById($address->getCustomerId());
-    
-        if(!$customer){
-            return $this;
-        }
 
         try{                                                                  
             $request = new Webhook($this->logger);
-            $response = $request->post('profile.updated', $customer->__toArray());
+            $response = $request->post('address.updated', $address->toArray());
         }catch(\Exception $e){
             $this->logger->debug($e);
         }
