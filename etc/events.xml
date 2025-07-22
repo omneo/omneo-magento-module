@@ -27,4 +27,7 @@
     <event name="order_cancel_after">
         <observer name="OrderCreate" instance="Omneo\Relay\Observer\Order\Data" />
     </event>
+    <event name="customer_address_delete_after">
+        <observer name="omneo_relay_customer_address_delete_webhook" instance="Omneo\Relay\Observer\Customer\AddressDelete" />
+    </event>
 </config>
